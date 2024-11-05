@@ -31,7 +31,52 @@ namespace Library_Project
             Library.Add(new Book { Title = "The Sound and the Fury", Author = "William Faulkner", Year = 1929, IsCheckedOut = true });
             Library.Add(new Book { Title = "The Catcher in the Rye", Author = "J.D. Salinger", Year = 1951, IsCheckedOut = true });
 
-            
+            void showMenu()
+            {
+                bool running = true;
+                while (running = true)
+                {
+                    Console.WriteLine("\nLibrary Menu:");
+                    Console.WriteLine("1. View all books");
+                    Console.WriteLine("2. Borrow a book");
+                    Console.WriteLine("3. Exit");
+
+                    Console.Write("Enter a command: ");
+                    string command = Console.ReadLine();
+                    switch (command)
+                    {
+                        case "1":
+                            ViewBooks(); break;
+                        
+                        case "2":
+                            Console.Write("Enter the title of the book you want to borrow: ");
+                            string bookBorrow = Console.ReadLine();
+                            BorrowByName(bookBorrow);
+                            break;
+                        
+                        case "3":
+                            running = false; 
+                            Console.WriteLine("Exiting the library system. Goodbye!");
+                            break;
+
+                        default:
+                            Console.WriteLine("Invalid command. Please try again.");
+                            break;
+                    }
+                    if (running)
+                    {
+                        Console.WriteLine("\nType \"Back\" to return to the menu");
+                        string UserInput = Console.ReadLine();
+                        if (UserInput == "Back" || UserInput == "back")
+                        {
+                            running = false;
+                        }
+                    } 
+                }
+                
+            }
+
+            showMenu();
             
             void BorrowByName(string bookBorrow)
             {
@@ -40,12 +85,12 @@ namespace Library_Project
                     if (title.Title == bookBorrow )
                     {
                         if (title.IsCheckedOut == true) 
-                                {
+                        {
                                      Console.WriteLine("We do not have this book in stock right now");
-                                } else { 
+                        } else { 
                                              Console.WriteLine($"You have succesfully borrowed {bookBorrow}");
                                              break;  
-                        }   
+                               }   
                         
                     }
                 }
@@ -55,30 +100,9 @@ namespace Library_Project
             {
                 foreach (var book in Library)
                 {
-                    Console.WriteLine($"{book.Title} by {book.Author} ({book.Year})");
+                    Console.WriteLine($"{book.Title} by {book.Author} ({book.Year})");  
                 }
             };
-
-            Console.WriteLine("Please write \"See library\" to view all books\nIf you want to borrow a book please write \"Borrow\"");
-            string UserInput = Console.ReadLine();
-
-            //TODO: fix "Unknown command. Try again after borrowing a book"
-            if (UserInput == "Borrow" || UserInput == "borrow")
-            {
-                   Console.WriteLine("Which book would you like to borrow?");
-                   string BookBorrow = Console.ReadLine();
-                   BorrowByName(BookBorrow);
-                   
-            }
-
-            if (UserInput == "See library" || UserInput == "see library")
-            {
-                ViewBooks();
-            }
-            else
-            {
-                Console.WriteLine("Unknown command. Try again.");
-            }
         }
     }
 }
