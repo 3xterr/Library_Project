@@ -8,6 +8,7 @@ namespace Library_Project
 
     class Book
     {
+        public int BookNumber { get; set; }
         public string Title { get; set; }
         public int Year { get; set; }
         public string Author { get; set; }
@@ -20,16 +21,16 @@ namespace Library_Project
         static void Main(string[] args)
         {
             List<Book> Library = new List<Book>();
-            Library.Add(new Book { Title = "1984", Author = "George Orwell", Year = 1949, IsCheckedOut = false });
-            Library.Add(new Book { Title = "To Kill a Mockingbird", Author = "Harper Lee", Year = 1960, IsCheckedOut = true });
-            Library.Add(new Book { Title = "Pride and Prejudice", Author = "Jane Austen", Year = 1813, IsCheckedOut = false });
-            Library.Add(new Book { Title = "Moby Dick", Author = "Herman Melville", Year = 1851, IsCheckedOut = false });
-            Library.Add(new Book { Title = "The Great Gatsby", Author = "F. Scott Fitzgerald", Year = 1925, IsCheckedOut = false });
-            Library.Add(new Book { Title = "Treasure Island", Author = "Robert Louis Stevenson", Year = 1883, IsCheckedOut = true });
-            Library.Add(new Book { Title = "Fahrenheit 451", Author = "Ray Bradbury", Year = 1953, IsCheckedOut = false });
-            Library.Add(new Book { Title = "The Wolf of Wall Street", Author = "Jordan Belfort", Year = 2007, IsCheckedOut = false });
-            Library.Add(new Book { Title = "The Sound and the Fury", Author = "William Faulkner", Year = 1929, IsCheckedOut = true });
-            Library.Add(new Book { Title = "The Catcher in the Rye", Author = "J.D. Salinger", Year = 1951, IsCheckedOut = true });
+            Library.Add(new Book { BookNumber = 1, Title = "1984", Author = "George Orwell", Year = 1949, IsCheckedOut = false });
+            Library.Add(new Book { BookNumber = 2, Title = "To Kill a Mockingbird", Author = "Harper Lee", Year = 1960, IsCheckedOut = true });
+            Library.Add(new Book { BookNumber = 3, Title = "Pride and Prejudice", Author = "Jane Austen", Year = 1813, IsCheckedOut = false });
+            Library.Add(new Book { BookNumber = 4, Title = "Moby Dick", Author = "Herman Melville", Year = 1851, IsCheckedOut = false });
+            Library.Add(new Book { BookNumber = 5, Title = "The Great Gatsby", Author = "F. Scott Fitzgerald", Year = 1925, IsCheckedOut = false });
+            Library.Add(new Book { BookNumber = 6, Title = "Treasure Island", Author = "Robert Louis Stevenson", Year = 1883, IsCheckedOut = true });
+            Library.Add(new Book { BookNumber = 7, Title = "Fahrenheit 451", Author = "Ray Bradbury", Year = 1953, IsCheckedOut = false });
+            Library.Add(new Book { BookNumber = 8, Title = "The Wolf of Wall Street", Author = "Jordan Belfort", Year = 2007, IsCheckedOut = false });
+            Library.Add(new Book { BookNumber = 9, Title = "The Sound and the Fury", Author = "William Faulkner", Year = 1929, IsCheckedOut = true });
+            Library.Add(new Book { BookNumber = 10, Title = "The Catcher in the Rye", Author = "J.D. Salinger", Year = 1951, IsCheckedOut = true });
 
             void showMenu()
             {
@@ -54,13 +55,14 @@ namespace Library_Project
                         
                         case "2":
                             Console.Write("Enter the title of the book you want to borrow: ");
-                            string bookBorrow = Console.ReadLine();
+                            int bookBorrow = Convert.ToInt32(Console.ReadLine());
                             BorrowByName(bookBorrow);
                             break;
                         
                         case "3":
                             running = false; 
                             Console.WriteLine("Exiting the library system. Goodbye!");
+                            Environment.Exit(0);
                             break;
 
                         default:
@@ -73,8 +75,8 @@ namespace Library_Project
                         string UserInput = Console.ReadLine();
                         if (UserInput == "Back" || UserInput == "back")
                         {
-                            running = false;
-                        }
+                            showMenu();
+                        } else { Console.WriteLine("Please try again"); }
                     } 
                 }
                 
@@ -82,17 +84,17 @@ namespace Library_Project
 
             showMenu();
             
-            void BorrowByName(string bookBorrow)
+            void BorrowByName(int bookBorrow)
             {
                foreach (var title in Library)
                 {
-                    if (title.Title == bookBorrow )
+                    if (title.BookNumber == bookBorrow )
                     {
                         if (title.IsCheckedOut == true) 
                         {
                                      Console.WriteLine("We do not have this book in stock right now");
                         } else { 
-                                             Console.WriteLine($"You have succesfully borrowed {bookBorrow}");
+                                             Console.WriteLine($"You have succesfully borrowed {title.Title}");
                                              break;  
                                }   
                         
@@ -104,7 +106,7 @@ namespace Library_Project
             {
                 foreach (var book in Library)
                 {
-                    Console.WriteLine($"{book.Title} by {book.Author} ({book.Year})");  
+                    Console.WriteLine($"{book.BookNumber} - {book.Title} by {book.Author} ({book.Year})");  
                 }
             };
         }
