@@ -36,10 +36,14 @@ namespace Library_Project
                 bool running = true;
                 while (running = true)
                 {
-                    Console.WriteLine("\nLibrary Menu:");
+                    Console.WriteLine("=====================================");
+                    Console.WriteLine("            Library Menu             ");
+                    Console.WriteLine("=====================================");
                     Console.WriteLine("1. View all books");
                     Console.WriteLine("2. Borrow a book");
                     Console.WriteLine("3. Exit");
+                    Console.WriteLine("=====================================");
+                    Console.Write("Please select an option: ");
 
                     Console.Write("Enter a command: ");
                     string command = Console.ReadLine();
