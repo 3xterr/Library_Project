@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using static System.Reflection.Metadata.BlobBuilder;
+using System.Security.Authentication;
 
 namespace Library_Project
 {
@@ -19,7 +20,7 @@ namespace Library_Project
 
     class Program
     {
-        //TODO: add method removing books.
+
         static void Main(string[] args)
         {
             List<Book> Library = new List<Book>();
@@ -69,7 +70,9 @@ namespace Library_Project
                             break;
 
                         case "4":
-                            RemoveBook();
+                            Console.WriteLine("Wnter the number of the book that you would like to remove: ");
+                            int removeBook = Convert.ToInt32(Console.ReadLine());
+                            RemoveBook(removeBook);
                             break;
 
                         case "5":
@@ -82,15 +85,8 @@ namespace Library_Project
                             Console.WriteLine("Invalid command. Please try again.");
                             break;
                     }
-                    if (running)
-                    {
-                        Console.WriteLine("\nType \"Back\" to return to the menu");
-                        string UserInput = Console.ReadLine();
-                        if (UserInput == "Back" || UserInput == "back")
-                        {
-                            showMenu();
-                        } else { Console.WriteLine("Please try again"); }
-                    } 
+                 
+                    
                 }
                 
             }
@@ -106,10 +102,10 @@ namespace Library_Project
                     {
                         if (book.IsCheckedOut == true)
                         {
-                            Console.WriteLine("We do not have this book in stock.");
+                            Console.WriteLine("We do not have this book in stock.\n");
                         } else
                         {
-                            Console.WriteLine("You successfully borrowed the book.");
+                            Console.WriteLine("You successfully borrowed the book.\n");
                             book.IsCheckedOut = true;
                         }
                     }
@@ -140,9 +136,10 @@ namespace Library_Project
                 Console.WriteLine("\nNew book added!");
             }
 
-            void RemoveBook()
+            void RemoveBook(int removeBook)
             {
-
+                Library.RemoveAt(removeBook - 1);
+                Console.WriteLine("Book succsessfully deleted.");
             }
         }
     }
