@@ -20,7 +20,7 @@ namespace Library_Project
 
     class Program
     {
-
+        //TODO: add method removing books.
         static void Main(string[] args)
         {
             List<Book> Library = new List<Book>();
@@ -85,8 +85,16 @@ namespace Library_Project
                             Console.WriteLine("Invalid command. Please try again.");
                             break;
                     }
-                 
-                    
+                    if (running)
+                    {
+                        Console.WriteLine("\nPress Enter to go back");
+                        string UserInput = Console.ReadLine();
+                        if (UserInput == "Back" || UserInput == "back")
+                        {
+                            showMenu();
+                        }
+                        else { Console.WriteLine(""); }
+                    }
                 }
                 
             }
@@ -102,10 +110,10 @@ namespace Library_Project
                     {
                         if (book.IsCheckedOut == true)
                         {
-                            Console.WriteLine("We do not have this book in stock.\n");
+                            Console.WriteLine("We do not have this book in stock.");
                         } else
                         {
-                            Console.WriteLine("You successfully borrowed the book.\n");
+                            Console.WriteLine("You successfully borrowed the book.");
                             book.IsCheckedOut = true;
                         }
                     }
