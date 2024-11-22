@@ -147,7 +147,7 @@ namespace Library_Project
             void RemoveBook(int removeBook)
             {
                 Library.RemoveAt(removeBook - 1);
-                Console.WriteLine("Book succsessfully deleted.");
+                Console.WriteLine("Book successfully deleted.");
             }
         }
     }
