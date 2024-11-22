@@ -70,7 +70,7 @@ namespace Library_Project
                             break;
 
                         case "4":
-                            Console.WriteLine("Wnter the number of the book that you would like to remove: ");
+                            Console.WriteLine("Enter the number of the book that you would like to remove: ");
                             int removeBook = Convert.ToInt32(Console.ReadLine());
                             RemoveBook(removeBook);
                             break;
